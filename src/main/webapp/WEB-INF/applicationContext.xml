@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+	xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation="
+	   		http://www.springframework.org/schema/beans 
+	        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	        http://www.springframework.org/schema/context 
+	        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	   		http://www.springframework.org/schema/aop
+	   		http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.springframework.org/schema/jee
+            http://www.springframework.org/schema/jee/spring-jee.xsd
+			http://www.springframework.org/schema/mvc 
+			http://www.springframework.org/schema/mvc/spring-mvc.xsd
+			http://www.springframework.org/schema/jdbc
+			http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+			http://mybatis.org/schema/mybatis-spring 
+			http://mybatis.org/schema/mybatis-spring.xsd
+			http://cxf.apache.org/jaxws 
+			http://cxf.apache.org/schemas/jaxws.xsd
+			http://cxf.apache.org/transports/http/configuration
+           	http://cxf.apache.org/schemas/configuration/http-conf.xsd
+           	http://cxf.apache.org/bindings/soap 
+           	http://cxf.apache.org/schemas/configuration/soap.xsd">
+
+	<import resource="dao-spring-context.xml" />
+	<import resource="spring-mvc-servlet.xml" />
+		
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.javastaff.logintestapp" />
+		
+	<!-- LOG -->
+	<bean id="log4jInitialization"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="org.springframework.util.Log4jConfigurer" />
+		<property name="targetMethod" value="initLogging" />
+		<property name="arguments">
+			<list>
+				<value>classpath:log4j.xml</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>
